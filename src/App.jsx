@@ -1,11 +1,22 @@
 import './App.css';
 import StaffList from './components/Staff/Staff.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 
 
 const App = () => {
+  // Functionn to handle what section shows from the Nav clicks
+  const [sectionToShow, setSectionToShow] = useState('home'); // Initialize with 'home' section shown
+
+  const handleNavItemClick = (sectionName) => {
+    setSectionToShow(sectionName);
+  };
+
+
+
+
+
   const [staff, setStaff] = useState([
     {
       name: "Stanley",
@@ -120,18 +131,18 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
-      <main className="home">
+      <Navbar onNavItemClick={handleNavItemClick} />
+      <main className="home" style={{ display: sectionToShow === 'home' ? 'block' : 'none' }}>
         <h1>Welcome to Ascension!</h1>
         <h2>The road ahead never seemed so clear!</h2>
         <p>Where to next?</p>
       </main>
-      <section className="companyHistory">
+      <section className="companyHistory" style={{ display: sectionToShow === 'companyHistory' ? 'block' : 'none' }}>
         <h2>Company History</h2>
         {companyHistory}
       </section>
 
-      <section className="carModels">
+      <section className="carModels" style={{ display: sectionToShow === 'carModels' ? 'block' : 'none' }}>
         <h2>Models</h2>
         <ul>
           {carModels.map((carModel, index) => {
@@ -147,7 +158,7 @@ const App = () => {
         </ul>
       </section>
 
-      <section>
+      <section className="pastWork" style={{ display: sectionToShow === 'pastWork' ? 'block' : 'none' }}>
         <h2>Past Work</h2>
         <ul>
           {pastWorks.map((pastWork, index) => {
@@ -168,7 +179,7 @@ const App = () => {
         </ul>
       </section>
 
-      <section className="staff">
+      <section className="staff" style={{ display: sectionToShow === 'staff' ? 'block' : 'none' }}>
         <h2>Staff</h2>
         <ul>
           {staff.map((employee) => (
@@ -181,7 +192,7 @@ const App = () => {
         </ul>
       </section>
 
-      <section className="contactUs">
+      <section className="contactUs" style={{ display: sectionToShow === 'contactUs' ? 'block' : 'none' }}>
         <h2>Contact Us</h2>
         <ul>
           Call us at {contactUs.phone}
@@ -190,7 +201,7 @@ const App = () => {
         </ul>
       </section>
 
-      <section className="externalLinks"></section>
+      <section className="externalLinks" style={{ display: sectionToShow === 'externalLinks' ? 'block' : 'none' }}>
       <footer>Nexts Steps:</footer>
       {externalLinks.map((externalLink, index) => {
         return (
@@ -199,7 +210,8 @@ const App = () => {
             <a href={externalLink.url}>{externalLink.name}</a>
           </div>
         )
-      })};
+      })}
+      </section>
     </>
   );
 };

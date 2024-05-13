@@ -1,17 +1,19 @@
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onNavItemClick }) => {
     return (
-        <nav id="top-navbar">
-            <a href="/">Home</a>
-            <a href="">Company History</a>
-            <a href="">Car Models</a>
-            <a href="">Past Work</a>
-            <a href="">Staff</a>
-            <a href="">Contact Us</a>
-            <a href="">External Links</a>
-        </nav>
+      <nav id='top-navbar'>
+        <ul>
+          <button onClick={() => onNavItemClick('home')}>Home</button>
+          <button onClick={() => onNavItemClick('companyHistory')}>Company History</button>
+          <button onClick={() => onNavItemClick('carModels')}>Car Models</button>
+          <button onClick={() => onNavItemClick('pastWork')}>Past Work</button>
+          <button onClick={() => onNavItemClick('staff')}>Staff</button>
+          <button onClick={() => onNavItemClick('contactUs')}>Contact Us</button>
+          <button onClick={() => onNavItemClick('externalLinks')}>External Links</button>
+        </ul>
+      </nav>
     );
-};
+  };
 
 export default Navbar;
